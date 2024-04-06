@@ -10,8 +10,8 @@
 <div>
     <h2>Employees</h2>
 
-<!--    <a th:href="@{/employees/add}" class="btn btn-success">Add Employee</a>-->
-        <button>Add Guest</button>
+    <a th:href="@{/guests/add}" class="btn btn-success">Add Employee</a>
+
     <hr/>
     <table class = "table table-striped">
         <thead>
@@ -34,8 +34,8 @@
             <td th:text = "${guest.check_in_date}"></td>
             <td th:text = "${guest.check_out_date}"></td>
             <td>
-<!--                <a th:href="@{/employees/delete(empId=${employee.id})}" class="btn btn-danger">Delete Employee</a>-->
-<!--                <a th:href="@{/employees/edit/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>-->
+                <a th:href="@{/guests/delete(guestId=${guest.id})}" class="btn btn-danger">Delete Employee</a>
+                <a th:href="@{/guest/edit/{id}(id=${guest.id})}" class="btn btn-primary">Update</a>
             </td>
         </tr>
         </tbody>
