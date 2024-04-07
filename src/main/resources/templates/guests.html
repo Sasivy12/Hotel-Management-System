@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-    <h2>Employees</h2>
+    <h2 class="text-center" >Guests</h2>
 
     <a th:href="@{/guests/add}" class="btn btn-success">Add Employee</a>
 
@@ -35,7 +35,7 @@
             <td th:text = "${guest.check_out_date}"></td>
             <td>
                 <a th:href="@{/guests/delete(guestId=${guest.id})}" class="btn btn-danger">Delete Employee</a>
-                <a th:href="@{/guest/edit/{id}(id=${guest.id})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/guests/edit/{id}(id=${guest.id})}" class="btn btn-primary">Update</a>
             </td>
         </tr>
         </tbody>
