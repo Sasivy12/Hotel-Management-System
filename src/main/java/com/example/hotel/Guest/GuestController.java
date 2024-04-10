@@ -1,4 +1,4 @@
-package com.example.hotel;
+package com.example.hotel.Guest;
 
 import com.example.hotel.Guest.Guest;
 import com.example.hotel.Guest.GuestRepository;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/")
-public class Controller
+public class GuestController
 {
     @Autowired
     private GuestRepository guestRepository;
@@ -72,6 +72,8 @@ public class Controller
         existingGuest.setEmail(guest.getEmail());
         existingGuest.setCheck_in_date(guest.getCheck_in_date());
         existingGuest.setCheck_out_date(guest.getCheck_out_date());
+
+        guestRepository.save(guest);
 
         return "redirect:/guests";
     }
