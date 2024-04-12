@@ -16,6 +16,7 @@ public class Guest
     private String email;
     private LocalDate check_in_date;
     private LocalDate check_out_date;
+    private Long room_id;
 
     public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {

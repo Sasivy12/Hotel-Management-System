@@ -9,7 +9,6 @@ import java.awt.*;
 @Table(name = "rooms")
 public class Room
 {
-
     /*
     id
     type
@@ -26,10 +25,9 @@ public class Room
     private double price;
     @Column(columnDefinition = "TEXT")
     private String description;
-    private String occupied;
-    private String occupied_by_who;
+    private Long occupied;
 
-    public Room(Long id, String type, String image, double price, String description, String occupied)
+    public Room(Long id, String type, String image, double price, String description, Long occupied, String occupiedByWho)
     {
         this.id = id;
         this.type = type;
@@ -39,7 +37,7 @@ public class Room
         this.occupied = occupied;
     }
 
-    public Room(String type, String image, double price, String description, String occupied)
+    public Room(String type, String image, double price, String description, Long occupied, String occupiedByWho)
     {
         this.type = type;
         this.image = image;
@@ -78,7 +76,7 @@ public class Room
         return description;
     }
 
-    public String getOccupied()
+    public Long getOccupied()
     {
         return occupied;
     }
@@ -108,7 +106,7 @@ public class Room
         this.description = description;
     }
 
-    public void setOccupied(String occupied)
+    public void setOccupied(Long occupied)
     {
         this.occupied = occupied;
     }
