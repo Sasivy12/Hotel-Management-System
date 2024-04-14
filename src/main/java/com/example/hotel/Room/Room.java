@@ -105,12 +105,12 @@ public class Room
         this.description = description;
     }
 
-    public Long getOccupiedId()
+    public Long getOccupied_id()
     {
         return occupied_id;
     }
 
-    public void setOccupiedId(Long occupied_id)
+    public void setOccupied_id(Long occupied_id)
     {
         this.occupied_id = occupied_id;
     }
