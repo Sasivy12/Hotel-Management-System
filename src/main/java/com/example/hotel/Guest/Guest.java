@@ -16,9 +16,10 @@ public class Guest
     private String email;
     private LocalDate check_in_date;
     private LocalDate check_out_date;
-    private Long room_id;
+    private Long room_number;
 
-    public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
+
+    public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date, Long roomNumber)
     {
         this.id = id;
         this.name = name;
@@ -26,15 +27,17 @@ public class Guest
         this.email = email;
         this.check_in_date = check_in_date;
         this.check_out_date = check_out_date;
+        room_number = roomNumber;
     }
 
-    public Guest(String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
+    public Guest(String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date, Long roomNumber)
     {
         this.name = name;
         this.phone_num = phone_num;
         this.email = email;
         this.check_in_date = check_in_date;
         this.check_out_date = check_out_date;
+        room_number = roomNumber;
     }
 
     public Guest()
@@ -100,5 +103,15 @@ public class Guest
     public void setCheck_out_date(LocalDate check_out_date)
     {
         this.check_out_date = check_out_date;
+    }
+
+    public Long getRoom_number()
+    {
+        return room_number;
+    }
+
+    public void setRoom_number(Long room_number)
+    {
+        this.room_number = room_number;
     }
 }

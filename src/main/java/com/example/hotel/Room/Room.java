@@ -15,7 +15,8 @@ public class Room
     image
     price
     description
-    occupied
+    occupied_id
+    occupied_name
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,25 +26,28 @@ public class Room
     private double price;
     @Column(columnDefinition = "TEXT")
     private String description;
-    private Long occupied;
+    private Long occupied_id;
+    private String occupied_name;
 
-    public Room(Long id, String type, String image, double price, String description, Long occupied, String occupiedByWho)
+    public Room(Long id, String type, String image, double price, String description, Long occupied_id, String occupiedName)
     {
         this.id = id;
         this.type = type;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.occupied = occupied;
+        this.occupied_id = occupied_id;
+        this.occupied_name = occupiedName;
     }
 
-    public Room(String type, String image, double price, String description, Long occupied, String occupiedByWho)
+    public Room(String type, String image, double price, String description, Long occupied_id, String occupiedName)
     {
         this.type = type;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.occupied = occupied;
+        this.occupied_id = occupied_id;
+        this.occupied_name = occupiedName;
     }
 
     public Room()
@@ -76,11 +80,6 @@ public class Room
         return description;
     }
 
-    public Long getOccupied()
-    {
-        return occupied;
-    }
-
     public void setId(Long id)
     {
         this.id = id;
@@ -106,8 +105,23 @@ public class Room
         this.description = description;
     }
 
-    public void setOccupied(Long occupied)
+    public Long getOccupiedId()
     {
-        this.occupied = occupied;
+        return occupied_id;
+    }
+
+    public void setOccupiedId(Long occupied_id)
+    {
+        this.occupied_id = occupied_id;
+    }
+
+    public String getOccupied_name()
+    {
+        return occupied_name;
+    }
+
+    public void setOccupied_name(String occupied_name)
+    {
+        this.occupied_name = occupied_name;
     }
 }
