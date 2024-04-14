@@ -22,17 +22,19 @@
             <th scope="col">Phone number</th>
             <th scope="col">Check in date</th>
             <th scope="col">Check out date</th>
+            <th scope="col">Room number</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each = "guest: ${guests}">
+        <tr th:each = "guest: ${guests}" class="text-center">
             <td th:text = "${guest.id}"></td>
             <td th:text = "${guest.name}"></td>
             <td th:text = "${guest.email}"></td>
             <td th:text = "${guest.phone_num}"></td>
             <td th:text = "${guest.check_in_date}"></td>
             <td th:text = "${guest.check_out_date}"></td>
+            <td th:text = "${guest.room_number}" class="h4" ></td>
             <td>
                 <a th:href="@{/guests/delete(guestId=${guest.id})}" class="btn btn-danger">Delete Employee</a>
                 <a th:href="@{/guests/edit/{id}(id=${guest.id})}" class="btn btn-primary">Update</a>

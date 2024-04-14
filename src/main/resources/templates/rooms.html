@@ -10,8 +10,6 @@
 <div>
     <h2 class="text-center" >Rooms</h2>
 
-<!--    <a th:href="@{/guests/add}" class="btn btn-success">Add Employee</a>-->
-
     <hr/>
     <table class = "table table-striped">
         <thead>
@@ -22,16 +20,15 @@
             <th scope="col">Type</th>
             <th scope="col">Occupied By (Name)</th>
             <th scope="col">Occupied By (ID)</th>
-            <th scope="col">Price</th>
+            <th scope="col">Price per night ($)</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each = "room: ${rooms}">
             <td th:text = "${room.id}"></td>
-<!--            <td th:image = "${room.image}"></td>-->
             <td>
-                <img th:src="@{'/images/' + ${room.image}}" width="300"/>
+                <img th:src="@{'/images/' + ${room.image}}" width="250"/>
             </td>
             <td th:text = "${room.description}"></td>
             <td th:text = "${room.type}"></td>
@@ -39,8 +36,6 @@
             <td th:text = "${room.occupied_id}"></td>
             <td th:text = "${room.price}"></td>
             <td>
-<!--                <a th:href="@{/guests/delete(guestId=${guest.id})}" class="btn btn-danger">Delete Employee</a>-->
-<!--                <a th:href="@{/guests/edit/{id}(id=${guest.id})}" class="btn btn-primary">Update</a>-->
             </td>
         </tr>
         </tbody>
