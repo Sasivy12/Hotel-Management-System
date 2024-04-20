@@ -1,6 +1,8 @@
 package com.example.hotel.Guest;
 
+import com.example.hotel.Room.Room;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Primary;
 
 import java.time.LocalDate;
 
@@ -9,17 +11,18 @@ import java.time.LocalDate;
 public class Guest
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String phone_num;
     private String email;
     private LocalDate check_in_date;
     private LocalDate check_out_date;
-    private Long room_number;
 
+    @OneToOne(mappedBy = "guest", cascade = CascadeType.ALL)
+    private Room room;
 
-    public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date, Long roomNumber)
+    public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {
         this.id = id;
         this.name = name;
@@ -27,17 +30,15 @@ public class Guest
         this.email = email;
         this.check_in_date = check_in_date;
         this.check_out_date = check_out_date;
-        room_number = roomNumber;
     }
 
-    public Guest(String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date, Long roomNumber)
+    public Guest(String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {
         this.name = name;
         this.phone_num = phone_num;
         this.email = email;
         this.check_in_date = check_in_date;
         this.check_out_date = check_out_date;
-        room_number = roomNumber;
     }
 
     public Guest()
@@ -105,13 +106,13 @@ public class Guest
         this.check_out_date = check_out_date;
     }
 
-    public Long getRoom_number()
+    public Room getRoom()
     {
-        return room_number;
+        return room;
     }
 
-    public void setRoom_number(Long room_number)
+    public void setRoom(Room room)
     {
-        this.room_number = room_number;
+        this.room = room;
     }
 }

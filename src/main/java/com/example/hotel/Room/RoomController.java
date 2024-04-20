@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/rooms")
 public class RoomController
 {
     @Autowired
     private RoomRepository roomRepository;
 
-    @GetMapping("/rooms")
+    @GetMapping("/")
     public String showRooms(Model model)
     {
         List<Room> rooms = roomRepository.findAll();

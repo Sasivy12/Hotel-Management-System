@@ -1,5 +1,6 @@
 package com.example.hotel.Room;
 
+import com.example.hotel.Guest.Guest;
 import jakarta.persistence.*;
 import org.attoparser.dom.Text;
 
@@ -9,51 +10,44 @@ import java.awt.*;
 @Table(name = "rooms")
 public class Room
 {
-    /*
-    id
-    type
-    image
-    price
-    description
-    occupied_id
-    occupied_name
-     */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String type;
     private String image;
     private double price;
     @Column(columnDefinition = "TEXT")
     private String description;
-    private Long occupied_id;
-    private String occupied_name;
 
-    public Room(Long id, String type, String image, double price, String description, Long occupied_id, String occupiedName)
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "guest_id"),
+            @JoinColumn(name = "guest_name")
+    })
+    private Guest guest;
+
+    public Room(Long id, String type, String image, double price, String description)
     {
         this.id = id;
         this.type = type;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.occupied_id = occupied_id;
-        this.occupied_name = occupiedName;
     }
 
-    public Room(String type, String image, double price, String description, Long occupied_id, String occupiedName)
+    public Room(String type, String image, double price, String description)
     {
         this.type = type;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.occupied_id = occupied_id;
-        this.occupied_name = occupiedName;
     }
 
     public Room()
     {
 
     }
+
 
     public Long getId()
     {
@@ -105,23 +99,13 @@ public class Room
         this.description = description;
     }
 
-    public Long getOccupied_id()
+    public Guest getGuest()
     {
-        return occupied_id;
+        return guest;
     }
 
-    public void setOccupied_id(Long occupied_id)
+    public void setGuest(Guest guest)
     {
-        this.occupied_id = occupied_id;
-    }
-
-    public String getOccupied_name()
-    {
-        return occupied_name;
-    }
-
-    public void setOccupied_name(String occupied_name)
-    {
-        this.occupied_name = occupied_name;
+        this.guest = guest;
     }
 }
