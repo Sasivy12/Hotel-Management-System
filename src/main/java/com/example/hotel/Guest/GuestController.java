@@ -2,26 +2,22 @@ package com.example.hotel.Guest;
 
 import com.example.hotel.Guest.Guest;
 import com.example.hotel.Guest.GuestRepository;
+import com.example.hotel.Room.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
 
-@org.springframework.stereotype.Controller
-@RequestMapping("/")
+@Controller
+@RequestMapping("/guests")
 public class GuestController
 {
     @Autowired
     private GuestRepository guestRepository;
 
-    @GetMapping("/hello")
-    public String hello()
-    {
-        return "Hello World";
-    }
-
-    @GetMapping({"/guests", "/"})
+    @GetMapping("/")
     public String getGuests(Model model)
     {
         List<Guest> guests = guestRepository.findAll();
@@ -77,4 +73,5 @@ public class GuestController
 
         return "redirect:/guests";
     }
+
 }

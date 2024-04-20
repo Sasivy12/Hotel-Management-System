@@ -1,5 +1,6 @@
 package com.example.hotel.Room;
 
+import com.example.hotel.Guest.Guest;
 import jakarta.persistence.*;
 import org.attoparser.dom.Text;
 
@@ -9,49 +10,44 @@ import java.awt.*;
 @Table(name = "rooms")
 public class Room
 {
-
-    /*
-    id
-    type
-    image
-    price
-    description
-    occupied
-     */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String type;
     private String image;
     private double price;
     @Column(columnDefinition = "TEXT")
     private String description;
-    private String occupied;
-    private String occupied_by_who;
 
-    public Room(Long id, String type, String image, double price, String description, String occupied)
+    @OneToOne
+    @JoinColumns({
+            @JoinColumn(name = "guest_id"),
+            @JoinColumn(name = "guest_name")
+    })
+    private Guest guest;
+
+    public Room(Long id, String type, String image, double price, String description)
     {
         this.id = id;
         this.type = type;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.occupied = occupied;
     }
 
-    public Room(String type, String image, double price, String description, String occupied)
+    public Room(String type, String image, double price, String description)
     {
         this.type = type;
         this.image = image;
         this.price = price;
         this.description = description;
-        this.occupied = occupied;
     }
 
     public Room()
     {
 
     }
+
 
     public Long getId()
     {
@@ -76,11 +72,6 @@ public class Room
     public String getDescription()
     {
         return description;
-    }
-
-    public String getOccupied()
-    {
-        return occupied;
     }
 
     public void setId(Long id)
@@ -108,8 +99,13 @@ public class Room
         this.description = description;
     }
 
-    public void setOccupied(String occupied)
+    public Guest getGuest()
     {
-        this.occupied = occupied;
+        return guest;
+    }
+
+    public void setGuest(Guest guest)
+    {
+        this.guest = guest;
     }
 }
