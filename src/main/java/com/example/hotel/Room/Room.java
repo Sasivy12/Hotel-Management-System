@@ -20,10 +20,7 @@ public class Room
     private String description;
 
     @OneToOne
-    @JoinColumns({
-            @JoinColumn(name = "guest_id"),
-            @JoinColumn(name = "guest_name")
-    })
+    @JoinColumn(name = "guest_id")
     private Guest guest;
 
     public Room(Long id, String type, String image, double price, String description)
