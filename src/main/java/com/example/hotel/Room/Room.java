@@ -19,9 +19,18 @@ public class Room
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "guest_id")
-    private Guest guest;
+//    @OneToOne
+//    @JoinColumns({
+//            @JoinColumn(name = "guest_id"),
+//            @JoinColumn(name = "guest_name")
+//    })
+    @ManyToOne
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
+    private Guest guest_id;
+
+    @ManyToOne
+    @JoinColumn(name = "guest_name", referencedColumnName = "name")
+    private Guest guest_name;
 
     public Room(Long id, String type, String image, double price, String description)
     {
@@ -96,13 +105,33 @@ public class Room
         this.description = description;
     }
 
-    public Guest getGuest()
+//    public Guest getGuest()
+//    {
+//        return guest;
+//    }
+//
+//    public void setGuest(Guest guest)
+//    {
+//        this.guest = guest;
+//    }
+
+    public Guest getGuest_id()
     {
-        return guest;
+        return guest_id;
     }
 
-    public void setGuest(Guest guest)
+    public void setGuest_id(Guest guest_id)
     {
-        this.guest = guest;
+        this.guest_id = guest_id;
+    }
+
+    public Guest getGuest_name()
+    {
+        return guest_name;
+    }
+
+    public void setGuest_name(Guest guest_name)
+    {
+        this.guest_name = guest_name;
     }
 }

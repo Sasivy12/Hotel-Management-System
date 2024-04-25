@@ -32,8 +32,8 @@
                 </td>
                 <td th:text = "${room.description}"></td>
                 <td th:text = "${room.type}"></td>
-                <td th:text = "${room.guest.name}"></td>
-                <td th:text = "${room.guest.id}"></td>
+                <td th:text = "${room.guest_name != null ? room.guest_name.name : ''}"></td>
+                <td th:text = "${room.guest_id != null ? room.guest_id.id : ''}"></td>
                 <td th:text = "${room.price}"></td>
                 <td>
             </td>
