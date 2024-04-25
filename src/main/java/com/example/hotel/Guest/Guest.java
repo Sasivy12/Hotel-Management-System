@@ -19,8 +19,8 @@ public class Guest
     private LocalDate check_in_date;
     private LocalDate check_out_date;
 
-    @OneToOne(mappedBy = "guest", cascade = CascadeType.ALL)
-    private Room room;
+//    @OneToOne(mappedBy = "guest", cascade = CascadeType.ALL)
+//    private Room room;
 
     public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {
@@ -106,13 +106,13 @@ public class Guest
         this.check_out_date = check_out_date;
     }
 
-    public Room getRoom()
-    {
-        return room;
-    }
-
-    public void setRoom(Room room)
-    {
-        this.room = room;
-    }
+//    public Room getRoom()
+//    {
+//        return room;
+//    }
+//
+//    public void setRoom(Room room)
+//    {
+//        this.room = room;
+//    }
 }
