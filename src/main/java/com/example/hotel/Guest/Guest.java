@@ -21,7 +21,7 @@ public class Guest
     @OneToOne()
     @JoinColumn(name = "room_id")
     Room room;
-
+  
     public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {
         this.id = id;
@@ -115,4 +115,3 @@ public class Guest
     {
         this.room = room;
     }
-}
