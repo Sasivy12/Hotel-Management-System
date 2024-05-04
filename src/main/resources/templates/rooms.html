@@ -18,7 +18,6 @@
             <th scope="col">Image</th>
             <th scope="col">Description</th>
             <th scope="col">Type</th>
-            <th scope="col">Occupied By (Name)</th>
             <th scope="col">Occupied By (ID)</th>
             <th scope="col">Price per night ($)</th>
         </tr>
@@ -32,8 +31,10 @@
                 </td>
                 <td th:text = "${room.description}"></td>
                 <td th:text = "${room.type}"></td>
-                <td th:text = "${room.guest.name}"></td>
-                <td th:text = "${room.guest.id}"></td>
+                <td th:if="${room.guest != null}" th:text="${room.guest.id}"></td>
+                <!-- If room doesn't have a guest, display some placeholder -->
+                <td th:unless="${room.guest != null}">No Guest</td>
+                <!-- Other table cells -->
                 <td th:text = "${room.price}"></td>
                 <td>
             </td>

@@ -2,7 +2,6 @@ package com.example.hotel.Room;
 
 import com.example.hotel.Guest.Guest;
 import jakarta.persistence.*;
-import org.attoparser.dom.Text;
 
 import java.awt.*;
 

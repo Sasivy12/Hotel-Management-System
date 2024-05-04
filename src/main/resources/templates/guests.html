@@ -22,7 +22,7 @@
             <th scope="col">Phone number</th>
             <th scope="col">Check in date</th>
             <th scope="col">Check out date</th>
-<!--            <th scope="col">Room number</th>-->
+            <th scope="col">Room number</th>
             <th scope="col">Options</th>
         </tr>
         </thead>
@@ -35,7 +35,9 @@
             <td th:text = "${guest.phone_num}"></td>
             <td th:text = "${guest.check_in_date}"></td>
             <td th:text = "${guest.check_out_date}"></td>
-<!--            <td th:text = "${guest.room_number}" class="h4" ></td>-->
+            <td th:if="${guest.room != null}" th:text="${guest.room.id}"></td>
+            <td th:unless="${guest.room != null}">No Room</td>
+
             <td>
                 <a th:href="@{/guests/delete(guestId=${guest.id})}" class="btn btn-danger">Delete Employee</a>
                 <a th:href="@{/guests/edit/{id}(id=${guest.id})}" class="btn btn-primary" th:target="_blank">Update</a>

@@ -19,8 +19,9 @@ public class Guest
     private LocalDate check_in_date;
     private LocalDate check_out_date;
 
-    @OneToOne(mappedBy = "guest", cascade = CascadeType.ALL)
-    private Room room;
+    @OneToOne
+    @JoinColumn(name = "room_id")
+    Room room;
 
     public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {
