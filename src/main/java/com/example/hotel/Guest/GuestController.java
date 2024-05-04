@@ -1,6 +1,5 @@
 package com.example.hotel.Guest;
 
-;
 import com.example.hotel.Room.Room;
 import com.example.hotel.Room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
