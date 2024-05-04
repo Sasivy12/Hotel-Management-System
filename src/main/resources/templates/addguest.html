@@ -26,10 +26,16 @@
         <h5>Enter check out date</h5>
         <input class="form-control mb-2 col-4" type="date" th:field="*{check_out_date}">
 
+        <h5>Select available room</h5>
+        <select class="form-control mb-3 col-4">
+            <option value="">Select a room</option>
+            <option th:each="room : ${emptyRooms}" th:value="${room.id}" th:text="${room.id}"></option>
+        </select>
+
         <button type="submit" class="btn btn-primary mb-3">Save</button>
 
     </form>
-    <a th:href="@{/guests}">Back to guest list</a>
+    <a th:href="@{/guests/}">Back to guest list</a>
 
 </div>
 

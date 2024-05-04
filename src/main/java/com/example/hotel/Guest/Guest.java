@@ -2,7 +2,6 @@ package com.example.hotel.Guest;
 
 import com.example.hotel.Room.Room;
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Primary;
 
 import java.time.LocalDate;
 
@@ -11,7 +10,7 @@ import java.time.LocalDate;
 public class Guest
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String phone_num;
@@ -19,9 +18,10 @@ public class Guest
     private LocalDate check_in_date;
     private LocalDate check_out_date;
 
-//    @OneToOne(mappedBy = "guest", cascade = CascadeType.ALL)
-//    private Room room;
-
+    @OneToOne()
+    @JoinColumn(name = "room_id")
+    Room room;
+  
     public Guest(Long id, String name, String phone_num, String email, LocalDate check_in_date, LocalDate check_out_date)
     {
         this.id = id;
@@ -106,13 +106,12 @@ public class Guest
         this.check_out_date = check_out_date;
     }
 
-//    public Room getRoom()
-//    {
-//        return room;
-//    }
-//
-//    public void setRoom(Room room)
-//    {
-//        this.room = room;
-//    }
-}
+    public Room getRoom()
+    {
+        return room;
+    }
+
+    public void setRoom(Room room)
+    {
+        this.room = room;
+    }

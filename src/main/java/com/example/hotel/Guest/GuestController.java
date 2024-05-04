@@ -1,14 +1,15 @@
 package com.example.hotel.Guest;
 
-import com.example.hotel.Guest.Guest;
-import com.example.hotel.Guest.GuestRepository;
+;
 import com.example.hotel.Room.Room;
+import com.example.hotel.Room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/guests")
@@ -16,6 +17,9 @@ public class GuestController
 {
     @Autowired
     private GuestRepository guestRepository;
+
+    @Autowired
+    private RoomRepository roomRepository;
 
     @GetMapping("/")
     public String getGuests(Model model)
@@ -26,32 +30,48 @@ public class GuestController
         return "guests";
     }
 
-    @GetMapping("/guests/delete")
+    @GetMapping("/delete")
     public String deleteGuest(@RequestParam Long guestId)
     {
-        guestRepository.deleteById(guestId);
 
-        return "redirect:/guests";
+        Optional<Guest> optionalGuest = guestRepository.findById(guestId);
+        if (optionalGuest.isPresent()) {
+
+            // Remove guest association from rooms
+            Room roomsWithGuest = roomRepository.findRoomsByGuest(guestId);
+
+            roomsWithGuest.setGuest(null);
+            roomRepository.save(roomsWithGuest); // Save the updated room
+
+
+            // Delete the guest
+            guestRepository.deleteById(guestId);
+        }
+
+        return "redirect:/guests/";
     }
 
-    @GetMapping("/guests/add")
+    @GetMapping("/add")
     public String addGuest(Model model)
     {
         Guest guest = new Guest();
         model.addAttribute("guest", guest);
 
+        List<Room> emptyRooms = roomRepository.findEmptyRooms();
+        model.addAttribute("emptyRooms",emptyRooms);
+
         return "addguest";
     }
 
-    @PostMapping("/guests/save")
+    @PostMapping("/save")
     public String saveGuest(@ModelAttribute("guest") Guest guest)
     {
         guestRepository.save(guest);
 
-        return "redirect:/guests";
+        return "redirect:/guests/";
     }
 
-    @GetMapping("/guests/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editGuest(@PathVariable Long id, Model model)
     {
         model.addAttribute("guest", guestRepository.findById(id).get());
@@ -59,7 +79,7 @@ public class GuestController
         return "edit_guest";
     }
 
-    @PostMapping("/guests/{id}")
+    @PostMapping("/update/{id}")
     public String updateGuest(@PathVariable Long id, @ModelAttribute("guest") Guest guest)
     {
         Guest existingGuest = guestRepository.findById(id).get();
@@ -71,7 +91,6 @@ public class GuestController
 
         guestRepository.save(guest);
 
-        return "redirect:/guests";
+        return "redirect:/guests/";
     }
-
 }

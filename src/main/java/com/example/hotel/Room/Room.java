@@ -2,16 +2,14 @@ package com.example.hotel.Room;
 
 import com.example.hotel.Guest.Guest;
 import jakarta.persistence.*;
-import org.attoparser.dom.Text;
 
-import java.awt.*;
 
 @Entity
 @Table(name = "rooms")
 public class Room
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String type;
     private String image;
@@ -19,18 +17,9 @@ public class Room
     @Column(columnDefinition = "TEXT")
     private String description;
 
-//    @OneToOne
-//    @JoinColumns({
-//            @JoinColumn(name = "guest_id"),
-//            @JoinColumn(name = "guest_name")
-//    })
-    @ManyToOne
-    @JoinColumn(name = "guest_id", referencedColumnName = "id")
-    private Guest guest_id;
-
-    @ManyToOne
-    @JoinColumn(name = "guest_name", referencedColumnName = "name")
-    private Guest guest_name;
+    @OneToOne()
+    @JoinColumn(name = "guest_id")
+    private Guest guest;
 
     public Room(Long id, String type, String image, double price, String description)
     {
@@ -54,8 +43,7 @@ public class Room
 
     }
 
-
-    public Long getId()
+ public Long getId()
     {
         return id;
     }
@@ -105,33 +93,13 @@ public class Room
         this.description = description;
     }
 
-//    public Guest getGuest()
-//    {
-//        return guest;
-//    }
-//
-//    public void setGuest(Guest guest)
-//    {
-//        this.guest = guest;
-//    }
-
-    public Guest getGuest_id()
+    public Guest getGuest()
     {
-        return guest_id;
+        return guest;
     }
 
-    public void setGuest_id(Guest guest_id)
+    public void setGuest(Guest guest)
     {
-        this.guest_id = guest_id;
-    }
-
-    public Guest getGuest_name()
-    {
-        return guest_name;
-    }
-
-    public void setGuest_name(Guest guest_name)
-    {
-        this.guest_name = guest_name;
+        this.guest = guest;
     }
 }

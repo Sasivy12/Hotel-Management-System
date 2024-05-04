@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <h2>Edit employee</h2>
-    <form th:action="@{/guests/{id} (id=${guest.id})}" th:object="${guest}" method="POST">
+    <form th:action="@{/guests/update/{id} (id=${guest.id})}" th:object="${guest}" method="POST">
         <input type="text" th:field="*{name}" class="form-control mb-3 col-4" placeholder="Enter name">
         <input type="text" th:field="*{email}" class="form-control mb-3 col-4" placeholder="Enter email">
         <input type="text" th:field="*{phone_num}" class="form-control mb-3 col-4" placeholder="Enter phone number">
@@ -21,7 +21,7 @@
 
         <button type="submit" class="btn btn-primary mb-3">Save</button>
     </form>
-    <a th:href="@{/guests}">Back to list</a>
+    <a th:href="@{/guests/}">Back to list</a>
 </div>
 </body>
 </html>
