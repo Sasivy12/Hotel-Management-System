@@ -17,7 +17,7 @@ public class Room
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne()
     @JoinColumn(name = "guest_id")
     private Guest guest;
 

@@ -1,7 +1,6 @@
 package com.example.hotel.Guest;
 
-import com.example.hotel.Guest.Guest;
-import com.example.hotel.Guest.GuestRepository;
+;
 import com.example.hotel.Room.Room;
 import com.example.hotel.Room.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +33,9 @@ public class GuestController
     @GetMapping("/delete")
     public String deleteGuest(@RequestParam Long guestId)
     {
-//        guestRepository.deleteById(guestId);
-//
-//        Room roomsWithGuest = roomRepository.findRoomsByGuest(guestId);
-//        if (roomsWithGuest != null) {
-//            roomsWithGuest.setGuest(null);
-//            roomRepository.save(roomsWithGuest);
-//        }
+
         Optional<Guest> optionalGuest = guestRepository.findById(guestId);
         if (optionalGuest.isPresent()) {
-            Guest guest = optionalGuest.get();
 
             // Remove guest association from rooms
             Room roomsWithGuest = roomRepository.findRoomsByGuest(guestId);
@@ -90,7 +82,6 @@ public class GuestController
     @PostMapping("/update/{id}")
     public String updateGuest(@PathVariable Long id, @ModelAttribute("guest") Guest guest)
     {
-
         Guest existingGuest = guestRepository.findById(id).get();
         existingGuest.setName(guest.getName());
         existingGuest.setPhone_num(guest.getPhone_num());

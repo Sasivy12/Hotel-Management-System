@@ -18,7 +18,7 @@ public class Guest
     private LocalDate check_in_date;
     private LocalDate check_out_date;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne()
     @JoinColumn(name = "room_id")
     Room room;
 
