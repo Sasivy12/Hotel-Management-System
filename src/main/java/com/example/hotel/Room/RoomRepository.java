@@ -14,7 +14,11 @@ import java.util.Optional;
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Long>
 {
-//    @Query("SELECT r FROM Room r WHERE NOT EXISTS (SELECT g FROM Guest g WHERE g.room = r)")
     @Query("SELECT r FROM Room r WHERE r.guest IS NULL")
     List<Room> findEmptyRooms();
+
+//    @Query("SELECT r FROM Room r WHERE r.guest.id IS :guestId")
+    @Query("SELECT r FROM Room r WHERE r.guest.id = :guestId")
+    Room findRoomsByGuest(@Param("guestId") Long guestId);
+
 }

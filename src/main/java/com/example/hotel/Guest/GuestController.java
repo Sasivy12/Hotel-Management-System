@@ -4,13 +4,13 @@ import com.example.hotel.Guest.Guest;
 import com.example.hotel.Guest.GuestRepository;
 import com.example.hotel.Room.Room;
 import com.example.hotel.Room.RoomRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/guests")
@@ -34,7 +34,27 @@ public class GuestController
     @GetMapping("/delete")
     public String deleteGuest(@RequestParam Long guestId)
     {
-        guestRepository.deleteById(guestId);
+//        guestRepository.deleteById(guestId);
+//
+//        Room roomsWithGuest = roomRepository.findRoomsByGuest(guestId);
+//        if (roomsWithGuest != null) {
+//            roomsWithGuest.setGuest(null);
+//            roomRepository.save(roomsWithGuest);
+//        }
+        Optional<Guest> optionalGuest = guestRepository.findById(guestId);
+        if (optionalGuest.isPresent()) {
+            Guest guest = optionalGuest.get();
+
+            // Remove guest association from rooms
+            Room roomsWithGuest = roomRepository.findRoomsByGuest(guestId);
+
+            roomsWithGuest.setGuest(null);
+            roomRepository.save(roomsWithGuest); // Save the updated room
+
+
+            // Delete the guest
+            guestRepository.deleteById(guestId);
+        }
 
         return "redirect:/guests/";
     }

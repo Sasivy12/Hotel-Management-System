@@ -3,14 +3,13 @@ package com.example.hotel.Room;
 import com.example.hotel.Guest.Guest;
 import jakarta.persistence.*;
 
-import java.awt.*;
 
 @Entity
 @Table(name = "rooms")
 public class Room
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String type;
     private String image;
@@ -18,7 +17,7 @@ public class Room
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "guest_id")
     private Guest guest;
 

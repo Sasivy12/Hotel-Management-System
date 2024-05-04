@@ -2,7 +2,6 @@ package com.example.hotel.Guest;
 
 import com.example.hotel.Room.Room;
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Primary;
 
 import java.time.LocalDate;
 
@@ -11,7 +10,7 @@ import java.time.LocalDate;
 public class Guest
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String phone_num;
@@ -19,7 +18,7 @@ public class Guest
     private LocalDate check_in_date;
     private LocalDate check_out_date;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "room_id")
     Room room;
 
